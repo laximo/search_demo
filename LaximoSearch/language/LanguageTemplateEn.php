@@ -5,10 +5,10 @@ namespace LaximoSearch\language;
 abstract class LanguageTemplateEn extends LanguageTemplate
 {
     public static $language_data = [
-        'START_PAGE_HEADING' => 'Unified Search',
+        'START_PAGE_HEADING' => 'Laximo.Search',
         'START_PAGE_ABOUT' => 'Fast car parts search engine',
         'NO_UPLOAD_ACCESS' => 'Data files upload is not allowed',
-        'START_TEXT' => 'Unified Search is a platform that can be used in various cases of full-text search for information about parts, products and their attributes',
+        'START_TEXT' => 'Laximo.Search is a platform that can be used in various cases of full-text search for information about parts, products and their attributes',
         'GETTING_STARTED' => 'Getting started',
         'SHOW_DEMO' => 'Show demo',
         'SEARCH_DEMO' => 'Search',

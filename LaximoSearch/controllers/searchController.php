@@ -105,7 +105,7 @@ class searchController extends Controller
         $this->page = $page;
 //        $this->advanced_search = true;
 
-        $this->pathway->addItem('Unified Search', $this->getBaseUrl());
+        $this->pathway->addItem('Laximo.Search', $this->getBaseUrl());
         $this->pathway->addItem($this->getLanguage()->t('SEARCH_DEMO'), $this->createUrl('search', 'show'));
 
         $this->render('search', 'view.twig', true);
@@ -149,7 +149,7 @@ class searchController extends Controller
         $vin = $this->input->getString('vin');
         $us = $this->getSearchService();
 
-        $this->pathway->addItem('Unified Search', $this->getBaseUrl());
+        $this->pathway->addItem('Laximo.Search', $this->getBaseUrl());
         $this->pathway->addItem($this->getLanguage()->t('SEARCH_DEMO'), $this->createUrl('search', 'show'));
         $this->pathway->addItem($vin, '');
 

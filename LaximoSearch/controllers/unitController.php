@@ -80,7 +80,7 @@ class unitController extends Controller
                 ]);
             }
 
-            $this->pathway->addItem('Unified Search', $this->getBaseUrl());
+            $this->pathway->addItem('Laximo.Search', $this->getBaseUrl());
             $this->pathway->addItem($this->getLanguage()->t('SEARCH_DEMO'), $this->createUrl('search', 'show'));
             $this->pathway->addItem($oem, '');
 
@@ -166,7 +166,7 @@ class unitController extends Controller
             }
         }
 
-        $this->pathway->addItem('Unified Search', $this->getBaseUrl());
+        $this->pathway->addItem('Laximo.Search', $this->getBaseUrl());
         $this->pathway->addItem($this->getLanguage()->t('SEARCH_DEMO'), $this->createUrl('search', 'show'));
         $this->pathway->addItem($unit->getName(), '');
 

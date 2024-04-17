@@ -5,10 +5,10 @@ namespace LaximoSearch\language;
 abstract class LanguageTemplateRu extends LanguageTemplate
 {
     public static $language_data = [
-        'START_PAGE_HEADING' => 'Unified Search',
+        'START_PAGE_HEADING' => 'Laximo.Search',
         'START_PAGE_ABOUT' => 'Унифицированная поисковая система',
         'NO_UPLOAD_ACCESS' => 'Нет прав на загрузку данных портфолио',
-        'START_TEXT' => 'Унифицированная поисковая система Unified Search является платформой, которая может использоваться в разных сценариях полнотекстового поиска информации о деталях, продуктах, их атрибутах в домене автозапчастей.',
+        'START_TEXT' => 'Унифицированная поисковая система Laximo.Search является платформой, которая может использоваться в разных сценариях полнотекстового поиска информации о деталях, продуктах, их атрибутах в домене автозапчастей.',
         'GETTING_STARTED' => 'Как использовать',
         'SHOW_DEMO' => 'Посмотреть демо',
         'SEARCH_DEMO' => 'Искать',
@@ -38,7 +38,7 @@ abstract class LanguageTemplateRu extends LanguageTemplate
         'UNITS' => 'Узлы',
         'SHOW_UNIT' => 'Показать',
         'NOT_AUTHORIZED' => 'Авторизация',
-        'NOT_AUTHORIZED_DESC' => 'Этот функционал доступен только пользователям Unified Search',
+        'NOT_AUTHORIZED_DESC' => 'Этот функционал доступен только пользователям Laximo.Search',
         'UPLOADS' => 'Загрузка наличия',
         'LOCALIZED_NAME_TABLE_HEAD' => 'Наименование (%s)',
         'CHANGE_MODIFICATION' => 'Изменить модификацию',

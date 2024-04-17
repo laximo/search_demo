@@ -1,4 +1,4 @@
-# Demonstration of integration with the service Unified Search
+# Demonstration of integration with the service Laximo.Search 
 **Requirements:**
 * PHP 7.1+
 * soap

@@ -36,7 +36,7 @@ class filesController extends Controller
             $tasks = $us->offersList($skip, $size)->data;
 
             if ($tasks) {
-                $this->pathway->addItem('Unified Search', $this->getBaseUrl());
+                $this->pathway->addItem('Laximo.Search', $this->getBaseUrl());
                 $this->pathway->addItem($this->getLanguage()->t('SEARCH_DEMO'), $this->createUrl('search', 'show'));
                 $this->pathway->addItem($this->getLanguage()->t('LOAD_OFFERS'), $this->createUrl('files', 'show'));
             }
