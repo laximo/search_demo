@@ -107,7 +107,11 @@ class Controller
 
     protected function getConfig()
     {
-        $config = json_decode(file_get_contents(ROOTPATH . '/config.json'), true);
+        $configFileName = ROOTPATH . '/config.json';
+        if (!file_exists($configFileName)) {
+            die('Setup config.json using config_example.json');
+        }
+        $config = json_decode(file_get_contents($configFileName), true);
 
         if ($this->user->isLoggedIn()) {
             $config['LaximoSearchService']['login'] = $this->user->getLogin();
