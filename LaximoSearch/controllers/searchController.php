@@ -30,7 +30,6 @@ class searchController extends Controller
         $autoId = $this->input->getInt('autoId');
         $size = $this->input->getInt('size', 20);
         $page = $this->input->getInt('page', 0);
-        $skip = $page * $size;
         $options = $this->input->get('options');
         $tags = $this->input->get('tags');
 
@@ -55,7 +54,7 @@ class searchController extends Controller
                 , $autoId && $this->vehicleInfo->state == UsVehicle::STATE_SUCCESS ? $autoId : null
                 , ($tags && $options && $options['tagToggler'] ? $tags : [])
                 , $this->getLanguage()->getLocalization()
-                , $skip
+                , $page
                 , $size);
 
             $this->foundTags = false;
