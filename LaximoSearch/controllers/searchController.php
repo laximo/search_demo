@@ -96,7 +96,7 @@ class searchController extends Controller
                 }
             }
 
-            $this->totalPages = !empty($this->result->totalPages) ? ceil($this->result->totalPages / $size) : 0;
+            $this->totalPages = $this->result->totalPages;
         }
 
         $this->query = $query;
