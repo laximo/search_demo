@@ -15,32 +15,34 @@ use Laximo\Search\responseObjects\UsOemParams;
 use Laximo\Search\responseObjects\UsSearchByOemsResponse;
 
 /**
- * @property array details
- * @property array units
- * @property string detailIds
- * @property UsOemParams vehicleParams
- * @property UnitObject unit
+ * @property array          details
+ * @property array          units
+ * @property string         detailIds
+ * @property UsOemParams    vehicleParams
+ * @property string         oem
+ * @property int            autoId
+ * @property UnitObject     unit
  * @property ImageMapObject imagemap
- * @property array detailImageCodes
- * @property array oemServiceData
+ * @property array          detailImageCodes
+ * @property array          oemServiceData
  * @property |null highlightCode
  */
 class unitController extends Controller
 {
     public function show()
     {
-        $autoId = $this->input->getInt('autoId');
+        $autoId    = $this->input->getInt('autoId');
         $detailIds = $this->input->getInt('detailIds');
-        $oem = $this->input->getString('oem');
+        $oem       = $this->input->getString('oem');
 
         $us = $this->getSearchService();
 
-        $oems = $us->resolveDetailIdsToOemsForAutoInfo($autoId, explode(',', $detailIds));
+        $oems   = $us->resolveDetailIdsToOemsForAutoInfo($autoId, explode(',', $detailIds));
         $params = $us->getParamsForOemService($autoId)->data;
 
         $oemServiceData = [];
-        $service = $this->getOemService();
-        $notSupported = false;
+        $service        = $this->getOemService();
+        $notSupported   = false;
         foreach ($oems->data as $originalDetail) {
             try {
                 $oemServiceData[] = $service->findPartInVehicle($params->catalog, $params->ssd, $originalDetail->oem, $this->getOemLocale());
@@ -71,12 +73,12 @@ class unitController extends Controller
 
                 $this->redirect('unit', 'unit', [
                     'detailIds' => $detailIds,
-                    'unitid' => $unit->getUnitId(),
-                    'ssd' => $unit->getSsd(),
-                    'catalog' => $params->catalog,
+                    'unitid'    => $unit->getUnitId(),
+                    'ssd'       => $unit->getSsd(),
+                    'catalog'   => $params->catalog,
                     'vehicleId' => $params->vehicleId,
-                    'oem' => $oem,
-                    'autoId' => $autoId
+                    'oem'       => $oem,
+                    'autoId'    => $autoId
                 ]);
             }
 
@@ -85,16 +87,17 @@ class unitController extends Controller
             $this->pathway->addItem($oem, '');
 
             $this->oemServiceData = $oemServiceData;
-            $this->detailIds = $detailIds;
-            $this->vehicleParams = $params;
-            $this->autoId = $autoId;
+            $this->detailIds      = $detailIds;
+            $this->vehicleParams  = $params;
+            $this->autoId         = $autoId;
+            $this->oem            = $oem;
 
             $this->render('unit', 'view.twig', true);
         }
     }
 
     /**
-     * @param $name
+     * @param                   $name
      * @param AttributeObject[] $attrs
      * @return mixed|string
      */
@@ -105,16 +108,17 @@ class unitController extends Controller
                 return $attr->getValue();
             }
         }
+
         return '';
     }
 
     public function unit()
     {
-        $autoId = $this->input->getString('autoId');
-        $oem = $this->input->getString('oem');
-        $unitId = $this->input->getString('unitid');
-        $ssd = $this->input->getString('ssd');
-        $catalog = $this->input->getString('catalog');
+        $autoId    = $this->input->getString('autoId');
+        $oem       = $this->input->getString('oem');
+        $unitId    = $this->input->getString('unitid');
+        $ssd       = $this->input->getString('ssd');
+        $catalog   = $this->input->getString('catalog');
         $vehicleId = $this->input->getString('vehicleId');
 
         $service = $this->getOemService();
@@ -133,8 +137,8 @@ class unitController extends Controller
             $this->renderError('500', $ex->getMessage());
         }
 
-        $oems = [];
-        $detailImageCodes = [];
+        $oems                = [];
+        $detailImageCodes    = [];
         $this->highlightCode = null;
 
         if (!empty($detailsList->getParts())) {
@@ -145,17 +149,17 @@ class unitController extends Controller
             }
         }
 
-        $us = $this->getSearchService();
+        $us           = $this->getSearchService();
         $searchByOems = $us->searchByOems($autoId, $oems, $this->getLanguage()->getLocalization());
-        $details = [];
+        $details      = [];
         foreach ($detailsList->getParts() as $original) {
             foreach ($searchByOems->data as $part) {
                 if ($this->filterOem($part->oem) == $this->filterOem($original->getOem()) && count($part->details)) {
                     foreach ($part->details as $item) {
-                        $detailImageCodes[$item->oem . $item->brand] = $original->getCodeOnImage();
-                        $item->amount = $this->getAttr('amount', $original->getAttributes());
-                        $item->note = $this->getAttr('note', $original->getAttributes());
-                        $item->code = $original->getCodeOnImage();
+                        $detailImageCodes[$item->oem . $item->brand]                     = $original->getCodeOnImage();
+                        $item->amount                                                    = $this->getAttr('amount', $original->getAttributes());
+                        $item->note                                                      = $this->getAttr('note', $original->getAttributes());
+                        $item->code                                                      = $original->getCodeOnImage();
                         $details[$original->getCodeOnImage()][$item->oem . $item->brand] = $item;
 
                         if ($item->oem == $oem) {
@@ -170,12 +174,12 @@ class unitController extends Controller
         $this->pathway->addItem($this->getLanguage()->t('SEARCH_DEMO'), $this->createUrl('search', 'show'));
         $this->pathway->addItem($unit->getName(), '');
 
-        $this->unit = $unit;
-        $this->details = $details;
-        $this->oem = $oem;
-        $this->imagemap = $imageMap;
+        $this->unit             = $unit;
+        $this->details          = $details;
+        $this->oem              = $oem;
+        $this->imagemap         = $imageMap;
         $this->detailImageCodes = $detailImageCodes;
-        $this->vehicleInfo = $vehicleInfo;
+        $this->vehicleInfo      = $vehicleInfo;
 
         $this->render('unit', 'unit.twig', true);
     }
