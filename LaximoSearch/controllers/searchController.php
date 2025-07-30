@@ -177,7 +177,7 @@ class searchController extends Controller
         $query = $this->input->getString('query');
 
         if ($query && strlen($query) > 3) {
-            $res = $us->complete($query);
+            $res = $us->complete($query, $this->getLanguage()->getLocalization());
             $this->responseJson($res->data);
         }
 
