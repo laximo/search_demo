@@ -6,7 +6,7 @@ use LaximoSearch\controllers\Controller;
 
 class Menu
 {
-    public function getMenu(string $name, string $customDirectory = null, Controller $controller)
+    public function getMenu(string $name, ?string $customDirectory, Controller $controller)
     {
 
         $str_data = file_get_contents($this->getFilePath($name, $customDirectory));

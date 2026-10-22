@@ -7,23 +7,63 @@ use Laximo\Search\responseObjects\UsAutoInfo;
 use Laximo\Search\responseObjects\UsSearchResultPageResponse;
 use Laximo\Search\responseObjects\UsVehicle;
 
-/**
- * @property UsSearchResultPageResponse result
- * @property UsVehicle[] foundedVehicles
- * @property bool query
- * @property float|int totalPages
- * @property bool foundTags
- * @property bool foundVendorCodes
- * @property array options
- * @property array tags
- * @property array languages
- * @property UsAutoInfo vehicleInfo
- * @property bool searchAvailable
- * @property int page
- * @property string vin
- */
 class searchController extends Controller
 {
+    /**
+     * @var UsSearchResultPageResponse
+     */
+    public $result;
+
+    /**
+     * @var UsVehicle[]
+     */
+    public $foundedVehicles;
+
+    /**
+     * @var string
+     */
+    public $query = '';
+
+    /**
+     * @var bool
+     */
+    public $foundTags = false;
+
+    /**
+     * @var bool
+     */
+    public $foundVendorCodes = false;
+
+    /**
+     * @var array|null
+     */
+    public $options;
+
+    /**
+     * @var array|null
+     */
+    public $tags;
+
+    /**
+     * @var UsAutoInfo
+     */
+    public $vehicleInfo;
+
+    /**
+     * @var bool
+     */
+    public $searchAvailable = false;
+
+    /**
+     * @var int
+     */
+    public $page = 0;
+
+    /**
+     * @var string
+     */
+    public $vin = '';
+
     public function show()
     {
         $query = $this->input->getString('query', '');

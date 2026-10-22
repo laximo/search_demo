@@ -14,21 +14,63 @@ use GuayaquilLib\ServiceOem;
 use Laximo\Search\responseObjects\UsOemParams;
 use Laximo\Search\responseObjects\UsSearchByOemsResponse;
 
-/**
- * @property array          details
- * @property array          units
- * @property string         detailIds
- * @property UsOemParams    vehicleParams
- * @property string         oem
- * @property int            autoId
- * @property UnitObject     unit
- * @property ImageMapObject imagemap
- * @property array          detailImageCodes
- * @property array          oemServiceData
- * @property |null highlightCode
- */
 class unitController extends Controller
 {
+    /**
+     * @var array
+     */
+    public $details = [];
+
+    /**
+     * @var string|int
+     */
+    public $detailIds;
+
+    /**
+     * @var UsOemParams
+     */
+    public $vehicleParams;
+
+    /**
+     * @var string
+     */
+    public $oem = '';
+
+    /**
+     * @var int|string
+     */
+    public $autoId;
+
+    /**
+     * @var UnitObject
+     */
+    public $unit;
+
+    /**
+     * @var ImageMapObject
+     */
+    public $imagemap;
+
+    /**
+     * @var array
+     */
+    public $detailImageCodes = [];
+
+    /**
+     * @var array
+     */
+    public $oemServiceData = [];
+
+    /**
+     * @var string|null
+     */
+    public $highlightCode;
+
+    /**
+     * @var VehicleObject
+     */
+    public $vehicleInfo;
+
     public function show()
     {
         $autoId    = $this->input->getInt('autoId');

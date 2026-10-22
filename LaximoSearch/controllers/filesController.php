@@ -7,17 +7,28 @@ use Laximo\Search\exceptions\AccessDeniedException;
 
 ini_set('max_execution_time', 600);
 
-/**
- * @property array files
- * @property float totalPages
- * @property array tasks
- * @property array errors
- * @property array errorsFiles
- * @property string downloadErrorsFileUrl
- * @property string uploadFileUrl
- */
 class filesController extends Controller
 {
+    /**
+     * @var array
+     */
+    public $tasks = [];
+
+    /**
+     * @var array
+     */
+    public $errors = [];
+
+    /**
+     * @var string
+     */
+    public $downloadErrorsFileUrl = '';
+
+    /**
+     * @var string
+     */
+    public $uploadFileUrl = '';
+
     public function show()
     {
         $format = $this->input->getString('format', false);

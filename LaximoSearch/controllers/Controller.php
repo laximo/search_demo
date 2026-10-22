@@ -17,12 +17,6 @@ use LaximoSearch\modules\ServiceProxy;
 use LaximoSearch\modules\User;
 
 
-/**
- * @property string errorMessage
- * @property false|mixed $action
- * @property bool|mixed|string $baseUrl
- * @property false|mixed $controller
- */
 class Controller
 {
     /**
@@ -64,6 +58,111 @@ class Controller
      * @var Language
      */
     private $language;
+
+    /**
+     * @var string
+     */
+    public $errorMessage;
+
+    /**
+     * @var false|mixed
+     */
+    public $action;
+
+    /**
+     * @var false|mixed
+     */
+    public $controller;
+
+    /**
+     * @var bool|mixed|string
+     */
+    public $baseUrl;
+
+    /**
+     * @var float|int|false
+     */
+    public $totalPages = false;
+
+    /**
+     * @var string
+     */
+    public $block = '';
+
+    /**
+     * @var false|mixed
+     */
+    public $cPage;
+
+    /**
+     * @var false|mixed
+     */
+    public $format;
+
+    /**
+     * @var int[]
+     */
+    public $pageSizes = [];
+
+    /**
+     * @var array
+     */
+    public $param1 = [];
+
+    /**
+     * @var array
+     */
+    public $param2 = [];
+
+    /**
+     * @var array
+     */
+    public $param3 = [];
+
+    /**
+     * @var string
+     */
+    public $type = '';
+
+    /**
+     * @var string
+     */
+    public $filterName = '';
+
+    /**
+     * @var string
+     */
+    public $filterType = '';
+
+    /**
+     * @var string
+     */
+    public $defaultValue = '';
+
+    /**
+     * @var array
+     */
+    public $filterKeyValues = [];
+
+    /**
+     * @var string
+     */
+    public $multi = '';
+
+    /**
+     * @var string
+     */
+    public $itemsBlock = '';
+
+    /**
+     * @var string
+     */
+    public $tooltip = '';
+
+    /**
+     * @var string
+     */
+    public $checked = '';
 
     public function __construct()
     {
