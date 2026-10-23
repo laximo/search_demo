@@ -322,7 +322,9 @@ class Controller
         }
 
         foreach ($params as $key => $param) {
-            $params[$key] = trim($param);
+            if (is_scalar($param)) {
+                $params[$key] = trim((string)$param);
+            }
         }
 
         if ($params) {

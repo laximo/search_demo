@@ -156,7 +156,7 @@ class unitController extends Controller
 
     public function unit()
     {
-        $autoId    = $this->input->getString('autoId');
+        $autoId    = $this->input->getInt('autoId');
         $oem       = $this->input->getString('oem');
         $unitId    = $this->input->getString('unitid');
         $ssd       = $this->input->getString('ssd');
@@ -194,9 +194,10 @@ class unitController extends Controller
         $us           = $this->getSearchService();
         $searchByOems = $us->searchByOems($autoId, $oems, $this->getLanguage()->getLocalization());
         $details      = [];
+
         foreach ($detailsList->getParts() as $original) {
             foreach ($searchByOems->data as $part) {
-                if ($this->filterOem($part->oem) == $this->filterOem($original->getOem()) && count($part->details)) {
+                if ($this->filterOem($part->oem) == $this->filterOem($original->getOem()) && is_countable($part->details) && count($part->details)) {
                     foreach ($part->details as $item) {
                         $detailImageCodes[$item->oem . $item->brand]                     = $original->getCodeOnImage();
                         $item->amount                                                    = $this->getAttr('amount', $original->getAttributes());

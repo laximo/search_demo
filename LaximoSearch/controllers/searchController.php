@@ -73,26 +73,33 @@ class searchController extends Controller
         $options = $this->input->get('options');
         $tags = $this->input->get('tags');
 
+        if (!is_array($options)) {
+            $options = [];
+        }
+
+        if (!is_array($tags)) {
+            $tags = [];
+        }
+
         $us = $this->getSearchService();
 
         if ($autoId) {
             $this->vehicleInfo = $us->indexationGetAutoInfo($autoId)->data;
         }
 
-        if ($options) {
-            foreach ($options as $key => $option) {
-                $options[$key] = $option ? 'true' : 'false';
-            }
+        foreach ($options as $key => $option) {
+            $options[$key] = $option ? 'true' : 'false';
         }
 
         $this->query = '';
+        $tagFilter = !empty($options['tagToggler']) ? $tags : [];
 
-        if (strlen($query) || $tags && $options && $options['tagToggler']) {
+        if (strlen($query) || $tagFilter) {
             $this->searchAvailable = true;
             $this->result = $us->search(
                 $query
                 , $autoId && $this->vehicleInfo->state == UsVehicle::STATE_SUCCESS ? $autoId : null
-                , ($tags && $options && $options['tagToggler'] ? $tags : [])
+                , $tagFilter
                 , $this->getLanguage()->getLocalization()
                 , $page
                 , $size);

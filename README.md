@@ -1,6 +1,6 @@
 # Demonstration of integration with the service Laximo.Search 
 **Requirements:**
-* PHP 7.1+
+* PHP 7.3+
 * soap
 * simplexml
 * json

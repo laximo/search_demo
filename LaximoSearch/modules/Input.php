@@ -5,9 +5,9 @@ namespace LaximoSearch\modules;
 
 class Input
 {
-    public function getString($arg, $default = false)
+    public function getString($arg, $default = '')
     {
-        $result = isset($_GET[$arg]) ? $_GET[$arg] : $default;
+        $result = isset($_GET[$arg]) ? (string)$_GET[$arg] : $default;
 
         return $result;
     }
@@ -16,7 +16,7 @@ class Input
         return !empty($_FILES[$name]) ? $_FILES[$name] : false;
     }
 
-    public function getInt($arg, $default = false)
+    public function getInt($arg, $default = 0)
     {
         $result = (int)(!empty($_GET[$arg]) ? $_GET[$arg] : $default);
 

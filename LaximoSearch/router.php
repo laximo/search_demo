@@ -21,12 +21,12 @@ class router
                     if (method_exists($controller, $action)) {
                         $controller->$action();
                     } else {
-                        http_response_code('404');
+                        http_response_code(404);
                         $abstractController = new Controller();
                         $abstractController->render('tmpl', '404.twig');
                     }
                 } else {
-                    http_response_code('404');
+                    http_response_code(404);
                     $abstractController = new Controller();
                     $abstractController->render('tmpl', '404.twig');
                 }
@@ -49,12 +49,14 @@ class router
     {
 
         $url = parse_url($segments);
+        $query = '';
         if (isset($url['query'])) {
             $query = $url['query'];
         }
 
         if (!empty($query)) {
             $values = explode('&', $query);
+            $parameters = [];
             foreach ($values as $key => $value) {
                 if ($value === '') {
                     unset($values[$key]);

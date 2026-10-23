@@ -93,12 +93,17 @@ class filesController extends Controller
         ];
         $file = $this->input->getFiles('file');
         $charset = $this->input->getString('charset', 'default');
-        $delimiter = $this->input->getString('delimiter', 'default');
+        $delimiterKey = $this->input->getString('delimiter', 'default');
 
         if ($charset == 'default') {
             $charset = null;
         }
-        $delimiter = $delimiters[$delimiter];
+
+        if (!isset($delimiters[$delimiterKey])) {
+            $delimiterKey = 'default';
+        }
+
+        $delimiter = $delimiters[$delimiterKey];
 
         if (!$file || !$file['tmp_name']) {
             die('Upload error! File is long.');

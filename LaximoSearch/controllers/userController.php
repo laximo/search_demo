@@ -9,9 +9,10 @@ class userController extends Controller
 {
     public function login()
     {
-        $user = $this->input->formData()['user'];
+        $form = $this->input->formData();
+        $user = (isset($form['user']) && is_array($form['user'])) ? $form['user'] : [];
 
-        if ($user['login'] && $user['password']) {
+        if (!empty($user['login']) && !empty($user['password'])) {
             if (User::loginToServices(trim($user['login']), $user['password'], $this->getConfig())) {
                 if (!empty($user['json']) && $user['json']) {
                     $this->responseJson($user);
@@ -21,7 +22,7 @@ class userController extends Controller
             }
         }
 
-        $this->redirectToUrl($user['return']);
+        $this->redirectToUrl(isset($user['return']) ? $user['return'] : '/');
     }
 
     public function logout()
