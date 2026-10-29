@@ -4,56 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "e320150e843a55ae6895fc60960b31be",
+    "content-hash": "74562ce11245a27a32e007232e9a08db",
     "packages": [
-        {
-            "name": "cweagans/composer-patches",
-            "version": "1.7.3",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/cweagans/composer-patches.git",
-                "reference": "e190d4466fe2b103a55467dfa83fc2fecfcaf2db"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/cweagans/composer-patches/zipball/e190d4466fe2b103a55467dfa83fc2fecfcaf2db",
-                "reference": "e190d4466fe2b103a55467dfa83fc2fecfcaf2db",
-                "shasum": ""
-            },
-            "require": {
-                "composer-plugin-api": "^1.0 || ^2.0",
-                "php": ">=5.3.0"
-            },
-            "require-dev": {
-                "composer/composer": "~1.0 || ~2.0",
-                "phpunit/phpunit": "~4.6"
-            },
-            "type": "composer-plugin",
-            "extra": {
-                "class": "cweagans\\Composer\\Patches"
-            },
-            "autoload": {
-                "psr-4": {
-                    "cweagans\\Composer\\": "src"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "BSD-3-Clause"
-            ],
-            "authors": [
-                {
-                    "name": "Cameron Eagans",
-                    "email": "me@cweagans.net"
-                }
-            ],
-            "description": "Provides a way to patch Composer packages.",
-            "support": {
-                "issues": "https://github.com/cweagans/composer-patches/issues",
-                "source": "https://github.com/cweagans/composer-patches/tree/1.7.3"
-            },
-            "time": "2022-12-20T22:53:13+00:00"
-        },
         {
             "name": "guzzlehttp/guzzle",
             "version": "7.16.1",
@@ -387,22 +339,22 @@
         },
         {
             "name": "laximo/guayaquillib",
-            "version": "v3.0.16",
+            "version": "v3.1.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/laximo/guayaquillib.git",
-                "reference": "5e475e1060b8919ce855b06aa248e2206b051c06"
+                "reference": "bbd9b4062b0b3ff7cb3bc6e07ae27ff139c12745"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/laximo/guayaquillib/zipball/5e475e1060b8919ce855b06aa248e2206b051c06",
-                "reference": "5e475e1060b8919ce855b06aa248e2206b051c06",
+                "url": "https://api.github.com/repos/laximo/guayaquillib/zipball/bbd9b4062b0b3ff7cb3bc6e07ae27ff139c12745",
+                "reference": "bbd9b4062b0b3ff7cb3bc6e07ae27ff139c12745",
                 "shasum": ""
             },
             "require": {
                 "ext-simplexml": "*",
                 "ext-soap": "*",
-                "php": ">=7.1"
+                "php": ">=7.3"
             },
             "type": "library",
             "autoload": {
@@ -435,28 +387,28 @@
             ],
             "support": {
                 "issues": "https://github.com/laximo/guayaquillib/issues",
-                "source": "https://github.com/laximo/guayaquillib/tree/v3.0.16"
+                "source": "https://github.com/laximo/guayaquillib/tree/v3.1.1"
             },
-            "time": "2024-10-29T10:03:03+00:00"
+            "time": "2026-10-28T10:42:56+00:00"
         },
         {
             "name": "laximo/search",
-            "version": "v1.1.9",
+            "version": "v1.1.10",
             "source": {
                 "type": "git",
                 "url": "https://github.com/laximo/search.git",
-                "reference": "37d6f629bce4423c92ebdd6dde9bae16b680645a"
+                "reference": "bcdcc6e84bf71fc0c7e28e98266b4ff18b509c1f"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/laximo/search/zipball/37d6f629bce4423c92ebdd6dde9bae16b680645a",
-                "reference": "37d6f629bce4423c92ebdd6dde9bae16b680645a",
+                "url": "https://api.github.com/repos/laximo/search/zipball/bcdcc6e84bf71fc0c7e28e98266b4ff18b509c1f",
+                "reference": "bcdcc6e84bf71fc0c7e28e98266b4ff18b509c1f",
                 "shasum": ""
             },
             "require": {
                 "ext-json": "*",
-                "guzzlehttp/guzzle": "*",
-                "php": ">=7.1"
+                "guzzlehttp/guzzle": "^7.10",
+                "php": ">=7.3"
             },
             "type": "library",
             "autoload": {
@@ -484,9 +436,9 @@
             ],
             "support": {
                 "issues": "https://github.com/laximo/search/issues",
-                "source": "https://github.com/laximo/search/tree/v1.1.9"
+                "source": "https://github.com/laximo/search/tree/v1.1.10"
             },
-            "time": "2025-07-29T09:04:15+00:00"
+            "time": "2026-10-29T03:44:48+00:00"
         },
         {
             "name": "psr/http-client",

@@ -6,12 +6,14 @@ use Exception;
 use GuayaquilLib\objects\oem\AttributeObject;
 use GuayaquilLib\objects\oem\ImageMapObject;
 use GuayaquilLib\objects\oem\PartListObject;
+use GuayaquilLib\objects\oem\PartObject;
 use GuayaquilLib\objects\oem\QuickDetailListObject;
 use GuayaquilLib\objects\oem\UnitObject;
 use GuayaquilLib\objects\oem\VehicleObject;
 use GuayaquilLib\Oem;
 use GuayaquilLib\ServiceOem;
 use Laximo\Search\responseObjects\UsOemParams;
+use Laximo\Search\responseObjects\UsSearchDetail;
 use Laximo\Search\responseObjects\UsSearchByOemsResponse;
 
 class unitController extends Controller
@@ -154,6 +156,24 @@ class unitController extends Controller
         return '';
     }
 
+    /**
+     * @param UsSearchDetail $item
+     * @param PartObject     $original
+     * @return \stdClass
+     */
+    private function buildDetailRow(UsSearchDetail $item, PartObject $original)
+    {
+        $row = new \stdClass();
+        foreach (get_object_vars($item) as $property => $value) {
+            $row->$property = $value;
+        }
+        $row->amount = $this->getAttr('amount', $original->getAttributes());
+        $row->note   = $this->getAttr('note', $original->getAttributes());
+        $row->code   = $original->getCodeOnImage();
+
+        return $row;
+    }
+
     public function unit()
     {
         $autoId    = $this->input->getInt('autoId');
@@ -199,11 +219,10 @@ class unitController extends Controller
             foreach ($searchByOems->data as $part) {
                 if ($this->filterOem($part->oem) == $this->filterOem($original->getOem()) && is_countable($part->details) && count($part->details)) {
                     foreach ($part->details as $item) {
-                        $detailImageCodes[$item->oem . $item->brand]                     = $original->getCodeOnImage();
-                        $item->amount                                                    = $this->getAttr('amount', $original->getAttributes());
-                        $item->note                                                      = $this->getAttr('note', $original->getAttributes());
-                        $item->code                                                      = $original->getCodeOnImage();
-                        $details[$original->getCodeOnImage()][$item->oem . $item->brand] = $item;
+                        $detailImageCodes[$item->oem . $item->brand] = $original->getCodeOnImage();
+                        $row = $this->buildDetailRow($item, $original);
+
+                        $details[$original->getCodeOnImage()][$item->oem . $item->brand] = $row;
 
                         if ($item->oem == $oem) {
                             $this->highlightCode = 'i' . $original->getCodeOnImage();

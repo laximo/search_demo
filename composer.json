@@ -10,30 +10,15 @@
     "twig/twig": ">=3.11.3 <3.12",
     "guzzlehttp/guzzle": "^7.10",
     "ext-json": "*",
-    "laximo/search": "1.1.*",
-    "cweagans/composer-patches": "^1.7"
+    "laximo/search": "1.1.*"
   },
   "config": {
     "platform": {
       "php": "7.3.0"
     },
-    "allow-plugins": {
-      "cweagans/composer-patches": true
-    },
     "policy": {
       "advisories": {
         "ignore": ["twig/twig"]
-      }
-    }
-  },
-  "extra": {
-    "composer-exit-on-patch-failure": true,
-    "patches": {
-      "twig/twig": {
-        "PHP 8.5: ord() on multibyte html_attr characters": "patches/twig-php85-ord.patch"
-      },
-      "laximo/search": {
-        "Declare unit fields on UsSearchDetail": "patches/laximo-search-detail-fields.patch"
       }
     }
   }
