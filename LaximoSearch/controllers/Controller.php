@@ -62,6 +62,11 @@ class Controller
     /**
      * @var string
      */
+    public $errorCode;
+
+    /**
+     * @var string
+     */
     public $errorMessage;
 
     /**
@@ -241,6 +246,7 @@ class Controller
 
     public function renderError($code, $message, $format = null)
     {
+        $this->errorCode    = $code;
         $this->errorMessage = $message;
 
         if ($format === 'json') {
@@ -251,7 +257,7 @@ class Controller
         if ($code == 401 || $code == 404 || $code == 500 || $code == 502) {
             $this->render('tmpl', $code . '.twig');
         } else {
-            $this->render('tmpl', '500.twig');
+            $this->render('tmpl', 'error.twig');
         }
         die();
     }
@@ -345,13 +351,13 @@ class Controller
         return urldecode($url);
     }
 
-    public function noSpaces($name) : string
+    public function noSpaces($name): string
     {
         $name = (string)$name;
         return preg_replace('/\s+/', ' ', $name);
     }
 
-    public function filterOem($oem) : string
+    public function filterOem($oem): string
     {
         $oem = (string)$oem;
         return preg_replace('/[^a-zа-я0-9]+/i', '', $oem);
